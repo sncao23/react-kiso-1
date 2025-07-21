@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-import ThreadList from "./ThreadList";
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ThreadList from './ThreadList';
+import ThreadNew from './ThreadNew';
 import { BASE_URL } from "./config";
 import './App.css'
 
@@ -17,7 +19,20 @@ function App() {
     fetchData();
   }, []);
 
-  return <ThreadList threads={threads} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<ThreadList threads={threads} />}
+        />
+        <Route
+          path="/threads/new"
+          element={<ThreadNew onAddThread={(newThread) => setThreads([newThread, ...threads])} />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
