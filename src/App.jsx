@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ThreadList from './ThreadList';
 import ThreadNew from './ThreadNew';
+import PostList from './PostList';
 import { BASE_URL } from "./config";
 import './App.css'
 
@@ -29,6 +30,10 @@ function App() {
         <Route
           path="/threads/new"
           element={<ThreadNew onAddThread={(newThread) => setThreads([newThread, ...threads])} />}
+        />
+        <Route 
+          path="/threads/:thread_id"
+          element={<PostList />}
         />
       </Routes>
     </BrowserRouter>
